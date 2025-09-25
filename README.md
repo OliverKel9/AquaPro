@@ -1,6 +1,6 @@
 # 📱 AquaPro – Gerenciamento de Serviços para Piscineiros
 
-O **AquaPro** é um aplicativo móvel desenvolvido como parte da disciplina **Programação de Dispositivos Móveis em Android**, com o objetivo de aplicar os conhecimentos adquiridos em sala na criação de uma solução real para um público com pouca ou nenhuma inserção tecnológica: **prestadores de serviços de manutenção de piscinas**.
+O **AquaPro** é um aplicativo móvel desenvolvido como parte da disciplina **Programação de Dispositivos Móveis em Android**, com o objetivo de aplicar os conhecimentos adquiridos em sala na criação de uma solução real **prestadores de serviços de manutenção de piscinas**.
 
 Este projeto une teoria e prática por meio da **metodologia PBL (Aprendizagem Baseada em Projetos)** e busca causar impacto social, oferecendo uma ferramenta digital acessível, funcional e relevante.
 
