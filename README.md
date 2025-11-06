@@ -10,7 +10,7 @@ Este projeto une teoria e prática por meio da **metodologia PBL (Aprendizagem B
 
 ---
 
-### Equipe do Projeto 
+## Equipe do Projeto 
 
 Ana Beatriz Cossari - RA: 202302480624 | Análise e Desenvolvimento de Sistemas
 
