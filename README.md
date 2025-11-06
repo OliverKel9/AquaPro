@@ -1,6 +1,7 @@
 # 📱 Projeto Móvel AquaPro – Gerenciamento de Serviços para Piscineiros
 
 Projeto da disciplina de programação de dispositivos móveis com ReactNative + Expo (Android)
+
 Orientador: Prof. Luiz Gustavo Turatti
 
 O **AquaPro** é um aplicativo móvel desenvolvido como parte da disciplina **Programação de Dispositivos Móveis em Android**, com o objetivo de aplicar os conhecimentos adquiridos em sala na criação de uma solução real **prestadores de serviços de manutenção de piscinas**.
@@ -12,6 +13,7 @@ Este projeto une teoria e prática por meio da **metodologia PBL (Aprendizagem B
 ### Equipe do Projeto 
 
 Ana Beatriz Cossari - RA: 202302480624 | Análise e Desenvolvimento de Sistemas
+
 Kelton Bruno Santos de Oliveira - RA: 202302380883 | Análise e Desenvolvimento de Sistemas
 
 ---
