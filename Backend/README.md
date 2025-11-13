@@ -69,20 +69,3 @@ O backend do **AquaPro** foi desenvolvido utilizando o **Supabase**, uma platafo
 ## 🔐 Segurança (RLS - Row Level Security)
 
 A **Row Level Security (RLS)** deve estar **ativada** em todas as tabelas relacionadas ao usuário, garantindo que cada usuário só visualize e manipule seus próprios dados.
-
-Exemplo de *policy* para a tabela `clientes`:
-```sql
--- Ativar RLS
-ALTER TABLE clientes ENABLE ROW LEVEL SECURITY;
-
--- Permitir que cada usuário veja apenas seus próprios clientes
-CREATE POLICY "Clientes do usuário autenticado" 
-ON clientes 
-FOR SELECT 
-USING (auth.uid() = user_id);
-
--- Permitir inserção de novos clientes pelo usuário autenticado
-CREATE POLICY "Inserir clientes do próprio usuário"
-ON clientes
-FOR INSERT
-WITH CHECK (auth.uid() = user_id);
