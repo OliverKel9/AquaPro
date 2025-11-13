@@ -20,13 +20,13 @@ Este projeto une teoria e prática por meio da **metodologia PBL (Aprendizagem B
 
 ## Objetivo Geral
 
-Desenvolver um aplicativo Android para auxiliar prestadores de serviços de piscina no **gerenciamento de agendamentos, pagamentos, estoque e clientes**, promovendo maior organização, profissionalização e eficiência operacional.
+Desenvolver um aplicativo Android para auxiliar prestadores de serviços de piscina no **gerenciamento de agendamentos, pagamentos e clientes**, promovendo maior organização, profissionalização e eficiência operacional.
 
 ---
 
 ## Objetivos Específicos
 
 - Criar um sistema de **agendamento digital** para otimizar o tempo e reduzir falhas organizacionais.
-- Implementar funcionalidades de **controle de pagamentos** e **estoque** para apoiar o planejamento financeiro e logístico.
+- Implementar funcionalidades de **controle de pagamentos** para apoiar o planejamento financeiro e logístico.
 - Facilitar o **cadastro e acompanhamento de clientes**, com geração de histórico de serviços prestados.
 
