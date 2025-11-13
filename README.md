@@ -12,9 +12,9 @@ Este projeto une teoria e prática por meio da **metodologia PBL (Aprendizagem B
 
 ## Equipe do Projeto 
 
-Ana Beatriz Cossari - RA: 202302480624 | Análise e Desenvolvimento de Sistemas
+**Ana Beatriz Cossari** - RA: 202302480624 | Análise e Desenvolvimento de Sistemas
 
-Kelton Bruno Santos de Oliveira - RA: 202302380883 | Análise e Desenvolvimento de Sistemas
+**Kelton Bruno Santos de Oliveira** - RA: 202302380883 | Análise e Desenvolvimento de Sistemas
 
 ---
 
