@@ -41,12 +41,11 @@ export default function Clientes() {
 
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder="Buscar cliente por nome ou telefone"
-        value={busca}
-        onChangeText={setBusca}
-      />
+      <TouchableOpacity onPress={() => router.push("/home/clientes/novo_cliente")}>
+        <Text style={{ fontSize: 18, color: "blue", marginBottom: 16 }}>+ Novo Cliente</Text>
+      </TouchableOpacity>
+
+      <TextInput style={styles.input} placeholder="Buscar cliente por nome ou telefone" value={busca} onChangeText={setBusca}/>
 
       {carregando ? (
         <Text>Carregando...</Text>
