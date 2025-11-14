@@ -12,8 +12,23 @@ export default function PagamentosScreen() {
   const [editando, setEditando] = useState<string | null>(null);
 
   async function carregarPagamentos() {
-    const { data, error } = await supabase.from("pagamentos").select("*").order("data_pagamento", { ascending: false });
-    if (!error && data) setPagamentos(data);
+    try {
+      const { data, error } = await supabase
+        .from("pagamentos")
+        .select("*")
+        .order("data_pagamento", { ascending: false });
+      
+      if (error) {
+        console.error("Erro ao carregar pagamentos:", error);
+        setMensagem("Erro ao carregar pagamentos");
+        return;
+      }
+      
+      setPagamentos(data || []);
+    } catch (err) {
+      console.error("Catch carregarPagamentos:", err);
+      setMensagem("Erro inesperado ao carregar");
+    }
   }
 
   async function salvarPagamento() {
@@ -22,44 +37,96 @@ export default function PagamentosScreen() {
       return;
     }
 
-    if (editando) {
-      await supabase.from("pagamentos").update({ cliente, valor, status }).eq("id", editando);
-      setMensagem("Pagamento atualizado!");
-    } else {
-      await supabase.from("pagamentos").insert([{ cliente, valor, status }]);
-      setMensagem("Pagamento salvo!");
+    const valorNumerico = parseFloat(valor);
+    if (isNaN(valorNumerico)) {
+      setMensagem("Valor inválido!");
+      return;
     }
 
-    setCliente("");
-    setValor("");
-    setStatus("");
-    setEditando(null);
-    carregarPagamentos();
+    const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+    let clienteId = cliente.trim();
+
+    try {
+      if (!uuidRegex.test(clienteId)) {
+        const { data: found, error: findErr } = await supabase
+          .from("clientes")
+          .select("id")
+          .eq("nome", clienteId)
+          .maybeSingle();
+
+        if (findErr) {
+          console.error("Erro ao buscar cliente:", findErr);
+          setMensagem("Erro ao buscar cliente");
+          return;
+        }
+
+        if (found && found.id) {
+          clienteId = found.id;
+        } else {
+          setMensagem("Cliente não encontrado");
+          return;
+        }
+      }
+
+      if (editando) {
+        const { error } = await supabase
+          .from("pagamentos")
+          .update({ cliente: clienteId, valor: valorNumerico, status })
+          .eq("id", editando);
+        
+        if (error) {
+          console.error("Erro ao atualizar:", error);
+          setMensagem("Erro ao atualizar pagamento: " + error.message);
+          return;
+        }
+        
+        setMensagem("Pagamento atualizado!");
+      } else {
+        const { error } = await supabase
+          .from("pagamentos")
+          .insert([{ cliente: clienteId, valor: valorNumerico, status }]);
+        
+        if (error) {
+          console.error("Erro ao inserir:", error);
+          setMensagem("Erro ao salvar pagamento: " + error.message);
+          return;
+        }
+        
+        setMensagem("Pagamento salvo!");
+      }
+
+      setCliente("");
+      setValor("");
+      setStatus("");
+      setEditando(null);
+      carregarPagamentos();
+    } catch (err) {
+      console.error("Catch salvarPagamento:", err);
+      setMensagem("Erro inesperado");
+    }
   }
 
   async function excluirPagamento(id: string) {
-    await supabase.from("pagamentos").delete().eq("id", id);
-    setMensagem("Pagamento excluído!");
-    carregarPagamentos();
+    try {
+      const { error } = await supabase.from("pagamentos").delete().eq("id", id);
+      
+      if (error) {
+        console.error("Erro ao excluir:", error);
+        setMensagem("Erro ao excluir pagamento");
+        return;
+      }
+      
+      setMensagem("Pagamento excluído!");
+      carregarPagamentos();
+    } catch (err) {
+      console.error("Catch excluirPagamento:", err);
+      setMensagem("Erro inesperado");
+    }
   }
 
   useEffect(() => {
     carregarPagamentos();
   }, []);
-
-  useEffect(() => {
-  async function limparPagamentosAntigos() {
-    const { data, error } = await supabase
-      .from("pagamentos")
-      .delete()
-      .lt("data", new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString()) // lt = less than (menor que) Date.now (data atual) - 30 dias (convertido em ms) new date converte em data legível e toISOString converte para o formato aceito pelo supabase.
-      .neq("status", "Pendente"); // só apaga se não for pendente
-
-    if (error) console.error("Erro ao limpar pagamentos antigos:", error);
-  }
-
-  limparPagamentosAntigos();
-}, []);
 
   return (
     <KeyboardAvoidingView
