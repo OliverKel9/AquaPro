@@ -40,11 +40,9 @@ Permite inserção no perfil	INSERT	public	Permite criar o registro de perfil ao
 Permite visualização do próprio perfil	SELECT	public	Usuário pode visualizar apenas o próprio perfil.
 
 📝 Resumo Geral e Implicações de Segurança
-✔️ Pontos Fortes
+
 O padrão adotado protege bem os dados: cada usuário só acessa seus próprios registros.
-
 Há separação entre dados pessoais, clientes, pagamentos e agendamentos.
-
 Muitas políticas seguem corretamente o princípio de propriedade dos dados.
 
 📘 Conclusão
